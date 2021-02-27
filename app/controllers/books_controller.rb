@@ -11,8 +11,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to book_path(@book)
+      redirect_to book_path(@book), notice: 'You have created book successfully.'
     else
+      @books = Book.all
+      @user = current_user
       render :index
     end
   end
@@ -58,7 +60,7 @@ class BooksController < ApplicationController
   def ensure_correct_user
     @book = Book.find(params[:id])
     unless @book.user == current_user
-      redirect_to user_path
+      redirect_to books_path
     end
   end
 end

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    books_path
+    user_path(current_user)
   end
 
   def after_sign_out_path_for(resource)
@@ -12,17 +12,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
-  before_action :authenticate_user!
-
-  before_action :ensure_correct_user, only:[:edit, :show]
-  
-  def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user.id)
-    end
+    added_attrs = [:email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
   end
 
   # def show
