@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # before_action :ensure_correct_user, only:[:edit]
 
   def show
+    @users = User.all
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
