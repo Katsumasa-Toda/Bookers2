@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def follows
+    @user = current_user
+  end
+
   # def logout
   #   session[:user_id] = nil
   #   flash[:notice] = "Signed out successfully."
