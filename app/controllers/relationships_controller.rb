@@ -10,11 +10,11 @@ def unfollow
 end
 
 def follows
-  @user = current_user
+  @user = User.find(params[:id])
 end
 
 def followers
-  @user = current_user
+  @user = User.find(params[:id])
 end
 
 end
