@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   root 'homes#top'
   get 'home/about' => 'homes#about'
   devise_for :users
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
   resources :users
+  get '/search' => 'search#search'
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   get 'relationship/follows/:id' => 'relationships#follows',as: 'relationship_follows'
