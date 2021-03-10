@@ -1,3 +1,6 @@
+<table>
+  <tbody>
+   <% book_comments.each do |book_comment| %>
 <tr>
   <td>
     <%= attachment_image_tag book_comment.user, :profile_image, size: "60x60", farmat: 'jpg', fallback: "no_image.jpg" %>
@@ -12,3 +15,6 @@
     <% end %>
   </td>
 </tr>
+<% end %>
+</tbody>
+</table>
